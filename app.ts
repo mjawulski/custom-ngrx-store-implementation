@@ -11,6 +11,9 @@ import { AddTodo } from './store/index';
   const todos = fromStore.reducer;
   const store = new fromStore.Store({ todos }, {});
 
+  const unsubscribe = store.subscribe((state: any) => {
+    fromRender.render(state.todos.todos);
+  });
   console.log('Initial State::', store.value);
   button.addEventListener(
     'click',
@@ -20,10 +23,17 @@ import { AddTodo } from './store/index';
       const payload = { label: input.value, complete: false };
 
       store.dispatch(new AddTodo(payload));
-      console.log('After action::', store.value);
 
       input.value = '';
     },
     false
   );
+
+  destroy.addEventListener('click', () => {
+    unsubscribe();
+  });
+
+  store.subscribe((store: any) => {
+    console.log('FOREVA::', store);
+  });
 })();
