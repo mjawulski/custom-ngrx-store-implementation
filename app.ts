@@ -18,9 +18,11 @@ import * as fromRender from './utils/render';
     () => {
       if (!input.value.trim()) return;
 
-      const todo = { label: input.value, complete: false };
+      const payload = { label: input.value, complete: false };
 
-      console.log('Todo added: ', todo);
+      store.dispatch({ type: 'ADD_TODO', payload });
+      console.log('After action::', store.value.todos);
+
       input.value = '';
     },
     false
