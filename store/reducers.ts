@@ -1,3 +1,22 @@
-export const initialState = {};
+export const initialState = {
+  loading: false,
+  loaded: false,
+  todos: [{ label: 'Learn NGRX', complete: false }]
+};
 
-export function reducer(): any {}
+export function reducer(
+  currentState: { [key: string]: any } = initialState,
+  action: { type: string; payload: any }
+): any {
+  switch (action.type) {
+    case 'ADD_TODO': {
+      const newState = {
+        ...currentState,
+        todos: [...currentState.todos, action.payload]
+      };
+      return newState;
+    }
+  }
+
+  return currentState;
+}

@@ -7,12 +7,10 @@ import * as fromRender from './utils/render';
   const destroy = document.querySelector('.unsubscribe') as HTMLButtonElement;
   const todoList = document.querySelector('.todos') as HTMLLIElement;
 
-  const store = new fromStore.Store(
-    {},
-    { todos: [{ label: 'Learn NGRX', complete: false }] }
-  );
+  const todos = fromStore.reducer;
+  const store = new fromStore.Store({ todos }, {});
 
-  console.log('State::', store.value);
+  console.log('Initial State::', store.value);
   button.addEventListener(
     'click',
     () => {
@@ -21,7 +19,7 @@ import * as fromRender from './utils/render';
       const payload = { label: input.value, complete: false };
 
       store.dispatch({ type: 'ADD_TODO', payload });
-      console.log('After action::', store.value.todos);
+      console.log('After action::', store.value);
 
       input.value = '';
     },
