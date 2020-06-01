@@ -1,3 +1,4 @@
+import * as fromAction from './actions';
 export const initialState = {
   loading: false,
   loaded: false,
@@ -9,7 +10,7 @@ export function reducer(
   action: { type: string; payload: any }
 ): any {
   switch (action.type) {
-    case 'ADD_TODO': {
+    case fromAction.ADD_TODO: {
       const newState = {
         ...currentState,
         todos: [...currentState.todos, action.payload]

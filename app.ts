@@ -1,5 +1,6 @@
 import * as fromStore from './store/index';
 import * as fromRender from './utils/render';
+import { AddTodo } from './store/index';
 
 (function() {
   const input = document.querySelector('input') as HTMLInputElement;
@@ -18,7 +19,7 @@ import * as fromRender from './utils/render';
 
       const payload = { label: input.value, complete: false };
 
-      store.dispatch({ type: 'ADD_TODO', payload });
+      store.dispatch(new AddTodo(payload));
       console.log('After action::', store.value);
 
       input.value = '';
